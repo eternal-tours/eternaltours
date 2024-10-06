@@ -22,15 +22,10 @@ const TripAdvisorWidget = () => {
     };
 
     document.getElementById("TA-widget-container").appendChild(script);
-
-    // Cleanup on component unmount
-    return () => {
-      document.getElementById("TA-widget-container").removeChild(script);
-    };
   }, []);
 
   return (
-    <div className="w-full">
+    <div className="w-full flex-1">
       <div id="TA-widget-container">
         <div
           id="TA_cdsratingsonlynarrow889"
