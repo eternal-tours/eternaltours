@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 import React, { useEffect, useRef } from "react";
 
@@ -5,48 +6,50 @@ export const TripAdvisor = () => {
   return (
     <div className="flex items-center justify-between">
       <TripAdvisorCertificate></TripAdvisorCertificate>
-      <TripAdvisorSelfServe></TripAdvisorSelfServe>
+      <TripAdvisorWidget></TripAdvisorWidget>
     </div>
   );
 };
-const TripAdvisorSelfServe = () => {
-  const widgetRef = useRef(null);
-
+const TripAdvisorWidget = () => {
   useEffect(() => {
+    // Dynamically add the TripAdvisor script
     const script = document.createElement("script");
     script.src =
-      "https://www.jscache.com/wejs?wtype=selfserveprop&uniq=484&locationId=23232279&lang=en_US&rating=true&nreviews=1&writereviewlink=true&popIdx=true&iswide=true&border=true&display_version=2";
+      "https://www.jscache.com/wejs?wtype=cdsratingsonlynarrow&uniq=889&locationId=23245962&lang=en_US&border=true&display_version=2";
     script.async = true;
     script.onload = () => {
-      script.loadtrk = true;
+      console.log("TripAdvisor widget loaded.");
     };
 
-    // Append the script only after the component is rendered
-    if (widgetRef.current) {
-      widgetRef.current.appendChild(script);
-    }
+    document.getElementById("TA-widget-container").appendChild(script);
+
+    // Cleanup on component unmount
+    return () => {
+      document.getElementById("TA-widget-container").removeChild(script);
+    };
   }, []);
 
   return (
-    <div className="flex-1">
-      <div
-        id="TA_selfserveprop484"
-        className="TA_selfserveprop"
-        ref={widgetRef}
-      >
-        <ul id="lU4Gw7" className="TA_links 5w7b2E4o">
-          <li id="koAwLij" className="iwsNYg4NszZ">
-            <a
-              target="_blank"
-              href="https://www.tripadvisor.com/Attraction_Review-g147311-d23232279-Reviews-Jamaica_Eternal_Tours-Montego_Bay_Saint_James_Parish_Jamaica.html"
-            >
-              <img
-                src="https://www.tripadvisor.com/img/cdsi/img2/branding/v2/Tripadvisor_lockup_horizontal_secondary_registered-11900-2.svg"
-                alt="TripAdvisor"
-              />
-            </a>
-          </li>
-        </ul>
+    <div className="w-full">
+      <div id="TA-widget-container">
+        <div
+          id="TA_cdsratingsonlynarrow889"
+          className="TA_cdsratingsonlynarrow"
+        >
+          <ul id="8vQX198f" className="TA_links W7qd0aL">
+            <li id="mGcSYpQTiE" className="2CKr4Zn31w4">
+              <a
+                target="_blank"
+                href="https://www.tripadvisor.com/Attraction_Review-g147311-d23245962-Reviews-Jamaica_Eternal_Tours_And_Transportation-Montego_Bay_Saint_James_Parish_Jamaica.html"
+              >
+                <img
+                  src="https://www.tripadvisor.com/img/cdsi/img2/branding/v2/Tripadvisor_lockup_horizontal_secondary_registered-18034-2.svg"
+                  alt="TripAdvisor"
+                />
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   );
