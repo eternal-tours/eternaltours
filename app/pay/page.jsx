@@ -15,7 +15,7 @@ const PaymentPage = () => {
     if (queryAmount) {
       setAmount(queryAmount);
     }
-  }, []);
+  }, [queryAmount]);
 
   return (
     <PayPalScriptProvider

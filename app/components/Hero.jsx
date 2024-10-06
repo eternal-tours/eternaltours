@@ -11,10 +11,11 @@ function Hero() {
       {/* Text Container */}
       <div className="relative z-10 text-white flex justify-center items-center h-full flex-col">
         <h1 className="text-4xl xl:text-8xl text-center font-extrabold">
-         Jamaica Eternal Tours
+          Jamaica Eternal Tours
         </h1>
         <p className="text-lg xl:text-xl my-4 text-center">
-         The island's premier bus tour agency for all your transportation needs
+          The island{"'s"} premier bus tour agency for all your transportation
+          needs
         </p>
 
         {/* Book Now Button */}
